@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            var d = new Date();
+            var date = d.getDate() + "-" + d.getMonth()+1 + "-" + d.getFullYear();
+            var time = d.getHours() + ":" + d.getMinutes();
+
+            $("#date_input").val(date + ", " + time);
+            $("#date_input").attr("value", "" + date + ", " + time + "");
+        });
+    </script>
 </head>
 <body>
 
@@ -44,6 +55,40 @@
                     Category:
                     <div th:each="category : ${post_.getCategories()}">
                         <span th:text="${category.categoryName}"></span>
+                    </div>
+                </div>
+
+                <div class="comments-container">
+                    <h3>Comments</h3>
+                    <div th:each="comment : ${post_.getComments()}" class="comment-wrapper">
+                        <div class="comment-header">
+                            <div th:text="${comment.authorName}"></div>
+                            <div th:text="${comment.dateTime}"></div>
+                        </div>
+
+                        <div class="text">
+                            <div th:text="${comment.comment}"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comments-container new-comment">
+                    <h3>Write a comment</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input id="date_input" type="text" name="dateTime" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" placeholder="Write your name here">
+                        </div>
+                        <div class="form-group">
+                            <label>Comment</label>
+                            <textarea type="text" name="comment" class="form-control" placeholder="Write your comment here"></textarea>
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Publish comment"/>
+                    </form>
                     </div>
                 </div>
             </div>

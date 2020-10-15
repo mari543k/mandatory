@@ -23,11 +23,10 @@ public class Post {
     /*
      * CascadeType.ALL: hvis et post slettes slettes alle images som er tilknyttet det bestemte post
      * mappedBy = "post": bestemmer hvilken side af forbindelsen er der den "dominerende side"
-
+     */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     // Instansiering af Set med et tomt Set
-    private Set<Image> images = new HashSet<>();
- */
+    private Set<Comment> comments = new HashSet<>();
 
     @ManyToMany
     // Omdøber tabellen
@@ -64,6 +63,14 @@ public class Post {
 
     public void setFeaturedImg(String featuredImg) {
         this.featuredImg = featuredImg;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 
     public Set<Category> getCategories() {

@@ -45,3 +45,10 @@ insert into post_cat (posts_id, categories_id)
 
 insert into post_cat (posts_id, categories_id)
     values (3, 2);
+
+/* Comment data */
+insert into comment (author_name, comment, date_time, post_id)
+    values ('Maria', 'This sucks', '15.10.2020', 2);
+
+insert into comment (author_name, comment, date_time, post_id)
+    values ('Tommy', 'I know right', '15.10.2020', 2);
