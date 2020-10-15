@@ -74,20 +74,27 @@
 
                 <div class="comments-container new-comment">
                     <h3>Write a comment</h3>
-                    <form>
+                    <form th:action="@{/view-post/}" th:method="post">
+                        <input type="hidden" class="d-none" name="post_id" th:value="${post_.id}">
+
                         <div class="form-group">
                             <label>Date</label>
-                            <input id="date_input" type="text" name="dateTime" class="form-control" readonly>
+                            <input id="date_input" type="text" name="date_time" class="form-control" readonly>
                         </div>
+
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="Write your name here">
+                            <input type="text" name="author_name" class="form-control" placeholder="Write your name here">
                         </div>
+
                         <div class="form-group">
                             <label>Comment</label>
                             <textarea type="text" name="comment" class="form-control" placeholder="Write your comment here"></textarea>
                         </div>
-                        <input class="btn btn-primary" type="submit" value="Publish comment"/>
+
+                        <div class="d-flex justify-content-end">
+                            <input class="btn btn-primary" type="submit" value="Publish comment"/>
+                        </div>
                     </form>
                     </div>
                 </div>

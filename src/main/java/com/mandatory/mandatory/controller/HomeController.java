@@ -1,7 +1,9 @@
 package com.mandatory.mandatory.controller;
 
+import com.mandatory.mandatory.model.Comment;
 import com.mandatory.mandatory.model.Post;
 import com.mandatory.mandatory.repository.CategoryRepository;
+import com.mandatory.mandatory.repository.CommentRepository;
 import com.mandatory.mandatory.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ public class HomeController {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
+    CommentRepository commentRepository;
+
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("post_", postRepository.findAll());
@@ -27,11 +32,22 @@ public class HomeController {
     }
 
     @GetMapping("/view-post/{id}")
-    public String view(@PathVariable("id") Long id, Model model) {
+    public String viewGET(@PathVariable("id") Long id, Model model) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post Id:" + id));
         model.addAttribute("post_", post);
         return "/view-post";
+    }
+
+    @PostMapping("/view-post")
+    public String viewPOST(@ModelAttribute Comment comment) {
+        try {
+            commentRepository.save(comment);
+            return "redirect:/";
+        } catch (Exception ex) {
+            System.out.println("Not created!");
+            return "redirect:/";
+        }
     }
 
     @GetMapping("/add-post")
@@ -44,7 +60,6 @@ public class HomeController {
     public String addPOST(@ModelAttribute Post post) {
         try {
             postRepository.save(post);
-
             return "redirect:/";
         } catch (Exception ex) {
             System.out.println("Not created!");
@@ -66,7 +81,6 @@ public class HomeController {
     public String editPOST(@ModelAttribute Post post) {
         try {
             postRepository.save(post);
-
             return "redirect:/";
         } catch (Exception ex) {
             System.out.println("Not created!");
