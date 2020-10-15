@@ -1,50 +1,76 @@
 <!DOCTYPE html>
-<html lang="dk" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Self care blog</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#summernote').summernote({
-                placeholder: 'Insert content here',
-                spellCheck: true,
-                height: 320
-            });
+        $( document ).ready(function() {
+            var url = $("#img_url").val();
+
+            $("#featured_img").attr("src", url);
+
+            $("#img_url").on("change", function () {
+                console.log("url has been changed: " + $("#img_url").val())
+                $("#featured_img").attr("src", $("#img_url").val());
+            })
         });
     </script>
 </head>
 <body>
 
-<nav th:replace="/fragments/navbar :: navbar"></nav>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{'/'}">Self care blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link btn btn-primary" th:href="@{'/add-post'}">New post</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-danger ml-4" th:href="@{'/delete-post/'+${post_.id}}">Delete post</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 <div class="container-fluid">
-    <h2>Edit post: <span></span></h2>
+    <h2>Edit post: <span th:text="${post_.title}"></span></h2>
 
     <div class="row">
         <div class="col-7 mx-auto">
-            <form th:action="@{/add-post/}" th:method="post">
+            <form th:action="@{/edit-post/}" th:method="post">
+                <input type="hidden" name="id" th:value="${post_.id}"/>
+
+                <div class="form-group">
+                    <label>Category</label>
+                </div>
+
                 <div class="form-group">
                     <label>Featured image</label>
-                    <input type="text" class="form-control" name="featuredImage" placeholder="Insert image URL here" required/>
+                    <input type="text" id="img_url" class="form-control" name="featuredImage" th:value="${post_.featuredImg}" required/>
+                    <img id="featured_img" class="img-example">
                 </div>
 
                 <div class="form-group">
                     <label>Title</label>
-                    <input type="text" class="form-control" name="title" placeholder="Insert title here" required/>
+                    <input type="text" class="form-control" name="title" th:value="${post_.title}" required/>
                 </div>
 
                 <div class="form-group">
                     <label>Content</label>
-                    <textarea id="summernote" type="text" class="form-control" name="text"></textarea>
+                    <textarea type="text" class="form-control" name="text" th:text="${post_.text}"></textarea>
                 </div>
 
                 <div class="form-group btn-group-wrapper">
-                    <button class="btn btn-secondary" onclick="location.href='/';">Cancel</button>
+                    <button type="button" class="btn btn-secondary" onclick="location.href='/';">Cancel</button>
                     <input type="reset" class="btn btn-secondary" value="Reset"/>
                     <input class="btn btn-primary" type="submit" value="Publish"/>
                 </div>
@@ -55,8 +81,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
 </body>
 </html>

@@ -1,6 +1,5 @@
 package com.mandatory.mandatory.controller;
 
-import com.mandatory.mandatory.model.Category;
 import com.mandatory.mandatory.model.Post;
 import com.mandatory.mandatory.repository.CategoryRepository;
 import com.mandatory.mandatory.repository.PostRepository;
@@ -29,8 +28,10 @@ public class HomeController {
 
     @GetMapping("/view-post/{id}")
     public String view(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("post_", postRepository.findById(id));
-        return "view-post";
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid post Id:" + id));
+        model.addAttribute("post_", post);
+        return "/view-post";
     }
 
     @GetMapping("/add-post")
@@ -44,10 +45,43 @@ public class HomeController {
         try {
             postRepository.save(post);
 
-            return "index";
+            return "redirect:/";
         } catch (Exception ex) {
             System.out.println("Not created!");
-            return "index";
+            return "redirect:/";
+        }
+    }
+
+    @GetMapping("/edit-post/{id}")
+    public String editGET(@PathVariable("id") Long id, Model model) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid post Id:" + id));
+        model.addAttribute("post_", post);
+
+        model.addAttribute("cat_", categoryRepository.findById(id));
+        return "edit-post";
+    }
+
+    @PostMapping("/edit-post")
+    public String editPOST(@ModelAttribute Post post) {
+        try {
+            postRepository.save(post);
+
+            return "redirect:/";
+        } catch (Exception ex) {
+            System.out.println("Not created!");
+            return "redirect:/";
+        }
+    }
+
+    @GetMapping("/delete-post/{id}")
+    public String deletePost(@PathVariable("id") Long id, Model model) {
+        try {
+            postRepository.deleteById(id);
+            return "redirect:/";
+        } catch (Exception ex) {
+            System.out.println("Blog post was not deleted!");
+            return "redirect:/";
         }
     }
 }

@@ -228,3 +228,47 @@ textarea.form-control {
 .form-group:first-child {
     margin-bottom: 25px;
 }
+
+.post-image {
+    margin: 0 -15px;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-image img {
+    width: 100%;
+}
+
+.single-post-wrapper {
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,.05);
+    background-color: #fff;
+    border-radius: .25rem;
+    padding: 1px 40px 40px;
+    margin: 40px 0;
+}
+
+.single-post-wrapper .cat-wrapper {
+    font-size: 12px;
+    margin-top: 40px;
+}
+
+.ml-4 {
+    margin-left: 40px;
+}
+
+.img-example {
+    width: 200px;
+    margin-top: 20px;
+}
+
+.btn-danger {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
