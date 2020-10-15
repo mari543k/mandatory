@@ -9,37 +9,39 @@ insert into category (category_name)
     values ('Self-esteem');
 
 /* Post data */
-insert into post (title, text)
-    values ('Title 1', 'Text 1');
+insert into post (title, text, featured_img)
+    values ('Title 1', 'Text 1', 'https://zero-to-three.s3.amazonaws.com/images/3521/a4de1df5-28e7-49fb-86a1-88fe40d32ae6-original.jpg?1566441697');
 
-insert into post (title, text)
-    values ('Title 2', 'Text 2');
+insert into post (title, text, featured_img)
+    values ('Title 2', 'Text 2', 'https://cdn.mindful.org/focus3.png');
 
-insert into post (title, text)
-    values ('Title 3', 'Text 3');
+insert into post (title, text, featured_img)
+    values ('Title 3', 'Text 3', 'https://i.pinimg.com/originals/60/7a/eb/607aeb2cd8b5df35ade17c2dcf171ada.png');
 
-insert into post (title, text)
-    values ('Title 4', 'Text 4');
+insert into post (title, text, featured_img)
+    values ('Title 4', 'Text 4', 'https://onlineacademiccommunity.uvic.ca/riskybehaviourlab/wp-content/uploads/sites/1974/2020/05/2887075-scaled.jpg');
 
-insert into post (title, text)
-    values ('Title 5', 'Text 5');
+insert into post (title, text, featured_img)
+    values ('Title 5', 'Text 5', 'https://cdn.tinybuddha.com/wp-content/uploads/2018/12/Mindful-couple.png');
 
-/* Image data */
-insert into image (url, post_id)
-    values ('https://zero-to-three.s3.amazonaws.com/images/3521/a4de1df5-28e7-49fb-86a1-88fe40d32ae6-original.jpg?1566441697', 3);
+insert into post (title, text, featured_img)
+    values ('Title 5', 'Text 6', 'https://cdn.mindful.org/lov.png?q=80&fm=jpg&fit=crop&w=1400&h=875');
 
-insert into image (url, post_id)
-    values ('https://cdn.mindful.org/focus3.png', 2);
-
-insert into image (url, post_id)
-    values ('https://i.pinimg.com/originals/60/7a/eb/607aeb2cd8b5df35ade17c2dcf171ada.png', 1);
+insert into post (title, text, featured_img)
+    values ('Title 5', 'Text 7', 'https://image.freepik.com/free-vector/man-meditating-nature_113065-185.jpg');
 
 /* Join post_cat data */
 insert into post_cat (posts_id, categories_id)
     values (1, 2);
 
 insert into post_cat (posts_id, categories_id)
+    values (1, 3);
+
+insert into post_cat (posts_id, categories_id)
     values (2, 1);
 
 insert into post_cat (posts_id, categories_id)
     values (3, 3);
+
+insert into post_cat (posts_id, categories_id)
+    values (3, 2);

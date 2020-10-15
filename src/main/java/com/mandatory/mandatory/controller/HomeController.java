@@ -1,6 +1,8 @@
 package com.mandatory.mandatory.controller;
 
+import com.mandatory.mandatory.model.Category;
 import com.mandatory.mandatory.model.Post;
+import com.mandatory.mandatory.repository.CategoryRepository;
 import com.mandatory.mandatory.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,9 @@ public class HomeController {
     @Autowired
     PostRepository postRepository;
 
+    @Autowired
+    CategoryRepository categoryRepository;
+
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("post_", postRepository.findAll());
@@ -29,14 +34,16 @@ public class HomeController {
     }
 
     @GetMapping("/add-post")
-    public String addGET() {
+    public String addGET(Model model) {
+        model.addAttribute("cat_", categoryRepository.findAll());
         return "add-post";
     }
 
     @PostMapping("/add-post")
-    public String addPOST(@ModelAttribute Post post, Model model) {
+    public String addPOST(@ModelAttribute Post post) {
         try {
             postRepository.save(post);
+
             return "index";
         } catch (Exception ex) {
             System.out.println("Not created!");

@@ -19,10 +19,16 @@
 
     <div class="post-wrapper">
         <div th:each="post: ${post_}" class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <img th:src="${post.featuredImg}" class="card-img-top">
             <div class="card-body">
                 <h5 th:text="${post.title}" class="card-title">Card title</h5>
-                <p th:text="${post.title}" class="card-text"></p>
+                <p th:text="${post.text}" class="card-text"></p>
+                <div class="cat-wrapper">
+                    Category:
+                    <div th:each="category : ${post.getCategories()}">
+                        <span th:text="${category.categoryName}"></span>
+                    </div>
+                </div>
                 <a th:href="@{'/view-post/'+${post.id}}" class="btn btn-primary">Read more</a>
             </div>
         </div>

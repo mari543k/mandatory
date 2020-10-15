@@ -9,7 +9,7 @@ import java.util.Set;
 public class Post {
 
     /*
-     * Danner id ud af den variabel der ligger lige nedenunder
+     * Danner id ud af den attribut der ligger lige nedenunder
      * @GeneratedValue(strategy = GenerationType.IDENTITY): Gør at id'et bliver auto-inkrementeret
      * Identity: den første post for id nr. 1 osv.
      */
@@ -18,14 +18,16 @@ public class Post {
     private Long id;
     private String title;
     private String text;
+    private String featuredImg;
 
     /*
      * CascadeType.ALL: hvis et post slettes slettes alle images som er tilknyttet det bestemte post
      * mappedBy = "post": bestemmer hvilken side af forbindelsen er der den "dominerende side"
-     */
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     // Instansiering af Set med et tomt Set
     private Set<Image> images = new HashSet<>();
+ */
 
     @ManyToMany
     // Omdøber tabellen
@@ -56,12 +58,12 @@ public class Post {
         this.text = text;
     }
 
-    public Set<Image> getImages() {
-        return images;
+    public String getFeaturedImg() {
+        return featuredImg;
     }
 
-    public void setImages(Set<Image> images) {
-        this.images = images;
+    public void setFeaturedImg(String featuredImg) {
+        this.featuredImg = featuredImg;
     }
 
     public Set<Category> getCategories() {

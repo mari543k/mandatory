@@ -1,5 +1,18 @@
 body {
     background-color: #f9f9fb;
+    min-height: 100vh;
+    background-image: url(https://static.wixstatic.com/media/024c381dbc32418e81ba15c389175b5d.jpg/v1/fill/w_1872,h_1250,al_c,q_90,usm_1.20_1.00_0.01/Sky%20Full%20of%20Light.webp);
+    display: flex;
+    flex-flow: column;
+    color: #44474a;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    height: 100%;
+    background-color: #f9f9fbdb;
+    flex: 1;
 }
 
 .h2, h2 {
@@ -7,8 +20,8 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 800;
-    margin: 40px 0;
-    color: #babaca;
+    margin: 60px 0 40px;
+    color: #44474a;
 }
 
 .post-wrapper {
@@ -19,7 +32,7 @@ body {
 
 .card {
     margin: 20px;
-    width: calc(100% / 3 - 40px) !important;
+    width: calc(100% / 4 - 40px) !important;
     border: none;
     box-shadow: 0 5px 20px 0 rgba(0,0,0,.05);
 }
@@ -34,22 +47,28 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 500;
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 .card .btn-primary {
     width: 100%;
 }
 
+.card-img, .card-img-top {
+    height: 250px;
+    width: auto;
+    object-fit: cover;
+}
+
 .navbar {
-    background-color: #f2f2f5!important;
+    background-color: #44474a !important;
     padding: 10px 40px;
 }
 
 .navbar-brand {
     text-transform: uppercase;
     font-weight: 800;
-    color: #7b7b8c !important;
+    color: #ffffff !important;
     font-size: 26px !important;
     margin-right: 40px !important;
 }
@@ -68,4 +87,144 @@ body {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+}
+
+.form-group {
+    margin-bottom: 40px;
+}
+
+label {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 800;
+    font-size: 14px;
+    color: #44474a;
+}
+
+.form-control {
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,.05) !important;
+    border: none !important;
+    outline: none !important;
+    padding: 10px 20px;
+    height: auto;
+}
+
+.btn-group-wrapper {
+    margin: 40px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-group-wrapper .btn-secondary {
+    margin-right: 20px;
+}
+
+.btn-secondary {
+    padding: 10px 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 12px;
+    background-color: #babaca !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+textarea.form-control {
+    height: 250px;
+}
+
+.cat-wrapper {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #aaa;
+    align-items: center;
+}
+
+.cat-wrapper div {
+    margin: 5px;
+    color: #f9ce6b;
+}
+
+.cat-wrapper div:first-child {
+    margin-left: 8px;
+}
+
+ .custom-checkbox {
+     display: block;
+     position: relative;
+     padding-left: 30px;
+     margin: 15px;
+     cursor: pointer;
+     font-size: 1rem;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     user-select: none;
+     font-weight: normal;
+ }
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #babaca;
+    transition: .15s ease-in-out;
+    border-radius: 50%;
+}
+
+.custom-checkbox:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: #44474a;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.custom-checkbox .checkmark:after {
+    left: 8px;
+    top: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.checkbox-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: -15px;
+}
+
+.form-group:first-child {
+    margin-bottom: 25px;
 }
