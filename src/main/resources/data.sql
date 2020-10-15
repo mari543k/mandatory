@@ -52,3 +52,6 @@ insert into comment (author, comment, datetime, post_id)
 
 insert into comment (author, comment, datetime, post_id)
     values ('Tommy', 'Great post', '15.10.2020', 2);
+
+insert into comment (author, comment, datetime, post_id)
+    values ('Derick', 'Great information', '15.10.2020', 1);
