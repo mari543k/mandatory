@@ -17,14 +17,14 @@
 
     <div class="post-wrapper">
         <div th:each="post: ${post_}" class="card">
-            <img th:src="${post.featuredImg}" class="card-img-top">
+            <img th:src="${post.image}" class="card-img-top">
             <div class="card-body">
                 <h5 th:text="${post.title}" class="card-title">Card title</h5>
                 <p th:text="${post.text}" class="card-text"></p>
                 <div class="cat-wrapper">
                     Category:
                     <div th:each="category : ${post.getCategories()}">
-                        <span th:text="${category.categoryName}"></span>
+                        <span th:text="${category.name}"></span>
                     </div>
                 </div>
                 <a th:href="@{'/view-post/'+${post.id}}" class="btn btn-primary">Read more</a>

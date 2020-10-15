@@ -18,7 +18,7 @@ public class Post {
     private Long id;
     private String title;
     private String text;
-    private String featuredImg;
+    private String image;
 
     /*
      * CascadeType.ALL: hvis et post slettes slettes alle images som er tilknyttet det bestemte post
@@ -32,6 +32,9 @@ public class Post {
     // Omdøber tabellen
     @JoinTable(name = "post_cat")
     private Set<Category> categories = new HashSet<>();
+
+    public Post() {
+    }
 
     public Long getId() {
         return id;
@@ -57,12 +60,12 @@ public class Post {
         this.text = text;
     }
 
-    public String getFeaturedImg() {
-        return featuredImg;
+    public String getImage() {
+        return image;
     }
 
-    public void setFeaturedImg(String featuredImg) {
-        this.featuredImg = featuredImg;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Set<Comment> getComments() {

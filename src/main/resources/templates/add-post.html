@@ -35,8 +35,8 @@
                     <label>Category</label>
                     <div class="checkbox-wrapper">
                         <label th:each="category: ${cat_}" class="custom-checkbox">
-                            <span th:text="${category.categoryName}"></span>
-                            <input type="checkbox" name="categoryName" th:value="${category.id}">
+                            <span th:text="${category.name}"></span>
+                            <input type="checkbox" name="name" th:value="${category.id}">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -44,7 +44,7 @@
 
                 <div class="form-group">
                     <label>Featured image</label>
-                    <input type="text" id="img_url" class="form-control" name="featured_image" placeholder="Insert image URL here" required/>
+                    <input type="text" id="img_url" class="form-control" name="image" placeholder="Insert image URL here" required/>
                     <img id="featured_img" class="img-example">
                 </div>
 

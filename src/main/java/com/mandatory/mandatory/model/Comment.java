@@ -8,13 +8,16 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String authorName;
+    private String author;
     private String comment;
-    private String dateTime;
+    private String datetime;
 
     @ManyToOne
     @JoinColumn(name="post_id")
     private Post post;
+
+    public Comment() {
+    }
 
     public Long getId() {
         return id;
@@ -24,12 +27,12 @@ public class Comment {
         this.id = id;
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getComment() {
@@ -40,11 +43,19 @@ public class Comment {
         this.comment = comment;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public String getDatetime() {
+        return datetime;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 }

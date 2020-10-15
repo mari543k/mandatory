@@ -10,10 +10,13 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String categoryName;
+    private String name;
 
     @ManyToMany(mappedBy = "categories")
     private Set<Post> posts = new HashSet<>();
+
+    public Category() {
+    }
 
     public Long getId() {
         return id;
@@ -23,12 +26,12 @@ public class Category {
         this.id = id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getName() {
+        return name;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Post> getPosts() {
